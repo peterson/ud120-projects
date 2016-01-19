@@ -38,16 +38,18 @@ from time import time
 print "Size of training set: ", len(features_train)
 print "No. of features: ", len(features_train[0])
 
-# classifier
+# classifiers
 
-from sklearn.ensemble import RandomForestClassifier
-clf = RandomForestClassifier(
-  # criterion='entropy',
-  min_samples_split=20,
-  n_estimators=20
-)
+# Random Forest
+# from sklearn.ensemble import RandomForestClassifier
+# clf = RandomForestClassifier(
+#   # criterion='entropy',
+#   min_samples_split=20,
+#   n_estimators=20
+# )
 # Result: ~ 0.924 accuracy
 
+# Gradient Boosting Classifier
 # from sklearn.ensemble import GradientBoostingClassifier
 # clf = GradientBoostingClassifier(
 #   min_samples_split=4,
@@ -55,6 +57,15 @@ clf = RandomForestClassifier(
 #   learning_rate=0.02
 # )
 # Result: ~ 0.92 accuracy
+
+
+# Adaboost classifier
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(
+  # n_estimators=100,
+  # learning_rate=0.2
+)
+# Result: ~ 0.924 accuracy. No improvement over default by tuning.
 
 # train
 print "Training classifier ..."
