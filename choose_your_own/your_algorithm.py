@@ -67,6 +67,13 @@ clf = AdaBoostClassifier(
 )
 # Result: ~ 0.924 accuracy. No improvement over default by tuning.
 
+
+# Comarison ... using Linear SVM
+# from sklearn.svm import SVC
+# clf = SVC()
+# Result: ~ 0.92 accuracy. Essentially the same, and much simpler decision model.
+# Note: due to linearity of data, use of an RBF kernel yields no improvement.
+
 # train
 print "Training classifier ..."
 t_fit_0 = time()
