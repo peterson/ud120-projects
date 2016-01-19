@@ -24,21 +24,42 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+# plt.show()
 ################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.ensemble import RandomForestClassifier
+from time import time
 
+print "Size of training set: ", len(features_train)
+print "No. of features: ", len(features_train[0])
 
+print "Training classifier ..."
+t_fit_0 = time()
+clf = RandomForestClassifier(
+  # criterion='entropy',
+  min_samples_split=20,
+  n_estimators=20
+)
 
+# train
+clf.fit(features_train, labels_train)
+t_fit_1 = time()
+print "Training complete."
+print "Training time: ", round (t_fit_1-t_fit_0, 2), "sec."
 
-
-
+# accuracy
+acc = clf.score(features_test, labels_test)
+print "Accuracy: ", round(acc, 3)
 
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
     pass
+
+# move show to the end, as it seems to grab the thread and prevent execution
+# of any code appearing _below_ it!
+plt.show()
